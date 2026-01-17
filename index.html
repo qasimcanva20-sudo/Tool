@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earnlytics - AI-Powered Profit Calculator for Ecommerce</title>
+    <meta name="description" content="Maximize your ecommerce profits with Earnlytics AI-powered profit calculator. Calculate exact profits across Shopify, Daraz, Facebook, WhatsApp & more.">
+    <meta name="keywords" content="profit calculator, ecommerce calculator, Shopify profit, Daraz pricing, Facebook business, WhatsApp sales, profit margin, business calculator">
+    <meta name="author" content="Earnlytics">
+    
+    <!-- Open Graph for SEO -->
+    <meta property="og:title" content="Earnlytics - AI Profit Calculator for Ecommerce">
+    <meta property="og:description" content="Free AI-powered tool to calculate and maximize your product profits across all platforms.">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2A5C9A;
+            --secondary-color: #1E4A7A;
+            --accent-color: #FF6B35;
+            --light-color: #f8f9fa;
+            --dark-color: #2C3E50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --border-radius: 12px;
+            --earnlytics-gradient: linear-gradient(135deg, #2A5C9A 0%, #1E4A7A 50%, #FF6B35 100%);
+            --card-gradient: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            background: var(--earnlytics-gradient);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(42, 92, 154, 0.2);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text span {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--earnlytics-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+        }
+        
+        .logo-text .tagline {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 3px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        nav a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent-color);
+        }
+        
+        nav a.active {
+            color: var(--primary-color);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+        
+        .cta-button {
+            background: var(--accent-color);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .cta-button:hover {
+            background: #e55a2b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e8edf5 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0H400V400H0V0Z' fill='%232A5C9A' fill-opacity='0.03'/%3E%3C/svg%3E%0A");
+            z-index: 1;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(42, 92, 154, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: #1E4A7A;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(42, 92, 154, 0.4);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .hero-visual {
+            position: relative;
+            background: var(--card-gradient);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(42, 92, 154, 0.1);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: transform 0.5s;
+        }
+        
+        .hero-visual:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .calculator-preview {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .preview-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .preview-input {
+            padding: 12px;
+            border: 1px solid #e1e5eb;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: #f8fafc;
+        }
+        
+        .preview-result {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .preview-result h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+        
+        .preview-result .amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: var(--card-gradient);
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(42, 92, 154, 0.05);
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border-color: rgba(42, 92, 154, 0.1);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(42, 92, 154, 0.1), rgba(255, 107, 53, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .feature-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        /* Platforms Section */
+        .platforms {
+            padding: 80px 0;
+            background: #f8fafc;
+        }
+        
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .platform-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 1px solid #e1e5eb;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+        }
+        
+        .platform-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .shopify { color: #96BF48; }
+        .daraz { color: #F85656; }
+        .facebook { color: #1877F2; }
+        .whatsapp { color: #25D366; }
+        .instagram { color: #E4405F; }
+        
+        .platform-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        .platform-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 60px;
+        }
+        
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            z-index: 1;
+        }
+        
+        .step {
+            position: relative;
+            z-index: 2;
+            background: white;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            background: var(--earnlytics-gradient);
+            box-shadow: 0 5px 15px rgba(42, 92, 154, 0.3);
+        }
+        
+        .step-content {
+            text-align: center;
+            margin-top: 100px;
+            max-width: 250px;
+        }
+        
+        .step-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: var(--earnlytics-gradient);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+        
+        .footer-section p {
+            color: #bbb;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-visual {
+                transform: none;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            .steps {
+                flex-direction: column;
+                align-items: center;
+                gap: 60px;
+            }
+            
+            .steps::before {
+                display: none;
+            }
+            
+            .step-content {
+                margin-top: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .preview-inputs {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-section h2 {
+                font-size: 2.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-buttons a {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 70px 0 50px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+            
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .stats-counter {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span>Earnlytics</span>
+                        <div class="tagline">AI-Powered Profit Intelligence</div>
+                    </div>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">Home</a></li>
+                        <li><a href="calculator.html">Calculator</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#" class="cta-button">Try Free Calculator</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <div class="hero-text">
+                    <h1>Maximize Your Ecommerce Profits with AI Precision</h1>
+                    <p>Earnlytics calculates exact profits across all platforms including Shopify, Daraz, Facebook, and WhatsApp. Get AI-powered insights to optimize pricing, reduce costs, and boost your bottom line.</p>
+                    
+                    <div class="stats-counter">
+                        <div class="stat-item">
+                            <div class="stat-number">15,000+</div>
+                            <div class="stat-label">Businesses Trust Us</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">PKR 2.5B+</div>
+                            <div class="stat-label">Profits Calculated</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Accuracy Rate</div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-buttons">
+                        <a href="profit-calcu.html" class="btn-primary">
+                            <i class="fas fa-calculator"></i> Try Free Calculator
+                        </a>
+                        <a href="#features" class="btn-secondary">
+                            <i class="fas fa-play-circle"></i> How It Works
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual fade-in-up">
+                    <div class="calculator-preview">
+                        <h3 style="margin-bottom: 20px; color: var(--primary-color);">Quick Profit Preview</h3>
+                        <div class="preview-inputs">
+                            <input type="text" class="preview-input" placeholder="Product Cost: PKR 850" readonly>
+                            <input type="text" class="preview-input" placeholder="Selling Price: PKR 1,799" readonly>
+                            <input type="text" class="preview-input" placeholder="Platform: Shopify" readonly>
+                            <input type="text" class="preview-input" placeholder="City: Karachi" readonly>
+                        </div>
+                        <div class="preview-result">
+                            <h4>Your Net Profit Per Item</h4>
+                            <div class="amount">PKR 614</div>
+                            <p style="margin-top: 10px; font-size: 0.9rem;">After all fees & charges</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Why Choose Earnlytics?</h2>
+                <p>Our AI-powered profit calculator gives you the edge in competitive ecommerce markets</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI-Powered Insights</h3>
+                    <p>Get intelligent recommendations to optimize pricing, reduce costs, and maximize profits based on real market data.</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Detailed Cost Breakdown</h3>
+                    <p>See exactly where every rupee goes - courier charges, platform fees, packaging costs, and all hidden expenses.</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Multi-Platform Analysis</h3>
+                    <p>Calculate profits across Shopify, Daraz, Facebook, WhatsApp, Instagram and compare which platform works best for you.</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Real Courier Rates</h3>
+                    <p>Accurate shipping calculations for Leopard, TCS, PostEx, Trax, Call Courier and more with city-specific pricing.</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Fully Responsive</h3>
+                    <p>Access your profit calculations on any device - desktop, tablet, or mobile. Your data syncs across all devices.</p>
+                </div>
+                
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>No Registration Required</h3>
+                    <p>Start calculating profits instantly. No signup, no credit card required. 100% free basic calculator.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platforms Section -->
+    <section class="platforms">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Supported Platforms</h2>
+                <p>Calculate profits across all major ecommerce platforms in Pakistan</p>
+            </div>
+            
+            <div class="platforms-grid">
+                <div class="platform-card fade-in-up">
+                    <div class="platform-icon">
+                        <i class="fab fa-shopify shopify"></i>
+                    </div>
+                    <h3>Shopify</h3>
+                    <p>Calculate exact profits after Shopify fees, payment gateway charges, and apps costs.</p>
+                </div>
+                
+                <div class="platform-card fade-in-up">
+                    <div class="platform-icon">
+                        <i class="fas fa-store daraz"></i>
+                    </div>
+                    <h3>Daraz</h3>
+                    <p>Account for Daraz commission, shipping subsidies, promotion fees, and returns.</p>
+                </div>
+                
+                <div class="platform-card fade-in-up">
+                    <div class="platform-icon">
+                        <i class="fab fa-facebook facebook"></i>
+                    </div>
+                    <h3>Facebook</h3>
+                    <p>Calculate Facebook Marketplace fees, advertising costs, and payment processing.</p>
+                </div>
+                
+                <div class="platform-card fade-in-up">
+                    <div class="platform-icon">
+                        <i class="fab fa-whatsapp whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>Track profits from direct WhatsApp sales with manual shipping and payment calculations.</p>
+                </div>
+                
+                <div class="platform-card fade-in-up">
+                    <div class="platform-icon">
+                        <i class="fab fa-instagram instagram"></i>
+                    </div>
+                    <h3>Instagram</h3>
+                    <p>Account for Instagram Shopping fees, influencer costs, and social media advertising.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>How Earnlytics Works</h2>
+                <p>Get your profit calculations in just 3 simple steps</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">1</div>
+                <div class="step">2</div>
+                <div class="step">3</div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 40px; flex-wrap: wrap;">
+                <div class="step-content fade-in-up">
+                    <h3>Enter Your Data</h3>
+                    <p>Input product cost, selling price, select your city, courier, and platform. Our interface is simple and intuitive.</p>
+                </div>
+                
+                <div class="step-content fade-in-up">
+                    <h3>AI Analysis</h3>
+                    <p>Our AI engine calculates all costs - shipping, platform fees, packaging, and hidden expenses in real-time.</p>
+                </div>
+                
+                <div class="step-content fade-in-up">
+                    <h3>Get Results & Insights</h3>
+                    <p>Receive detailed profit breakdown with AI-powered recommendations to maximize your earnings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="fade-in-up">Start Maximizing Your Profits Today</h2>
+            <p class="fade-in-up">Join 15,000+ ecommerce sellers who use Earnlytics to optimize their pricing and increase profits</p>
+            <div class="cta-buttons fade-in-up">
+                <a href="calculator.html" class="btn-primary" style="background: white; color: var(--primary-color);">
+                    <i class="fas fa-calculator"></i> Try Free Calculator
+                </a>
+                <a href="#" class="btn-secondary" style="background: transparent; border: 2px solid white;">
+                    <i class="fas fa-play-circle"></i> Watch Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Earnlytics</h3>
+                    <p>AI-powered profit intelligence platform helping ecommerce businesses optimize pricing, reduce costs, and maximize profits across all sales channels.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="calculator.html"><i class="fas fa-chevron-right"></i> Profit Calculator</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> How It Works</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Pricing Strategies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Platforms</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-shopify"></i> Shopify Calculator</a></li>
+                        <li><a href="#"><i class="fas fa-store"></i> Daraz Calculator</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook Calculator</a></li>
+                        <li><a href="#"><i class="fab fa-whatsapp"></i> WhatsApp Calculator</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-envelope"></i> support@earnlytics.com</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +92 300 1234567</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Karachi, Pakistan</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Earnlytics. All rights reserved. | AI-Powered Profit Intelligence Platform</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple counter animation for stats
+        document.addEventListener('DOMContentLoaded', function() {
+            // Stats counter animation
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = current.toFixed(0) + (stat.textContent.includes('B') ? 'B+' : '+');
+                }, 30);
+            });
+            
+            // Fade in animation on scroll
+            const fadeElements = document.querySelectorAll('.fade-in-up');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('active');
+                    }
+                });
+            };
+            
+            // Initial check
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+            
+            // Preview calculator animation
+            const previewResult = document.querySelector('.preview-result .amount');
+            let profitValues = [614, 728, 592, 671, 635];
+            let currentIndex = 0;
+            
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % profitValues.length;
+                previewResult.textContent = `PKR ${profitValues[currentIndex]}`;
+                
+                // Add animation
+                previewResult.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    previewResult.style.transform = 'scale(1)';
+                }, 300);
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
